@@ -1,0 +1,124 @@
+<p-table [columns]="cols" [value]="cars" dataKey="vin" [responsive]="true" [style]="{'max-width':'100%','overflow-x':'scroll'}">
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th style="width: 2.25em; background:#00CCCB"></th>
+          <th *ngFor="let col of columns" style="width: 10.25em; background:#00CCCB;color:#FBFEFF;height: 60px;">
+              {{col.header}}
+          </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+      <tr>
+          <td>
+              <a href="#" [pRowToggler]="rowData">
+                  <i [ngClass]="expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'"></i>
+              </a>
+          </td>
+          <td *ngFor="let col of columns" align="center" style="background:#FFFFFF; color: rgb(80, 80, 78);height: 60px; font-weight:bold;filter: brightness(1.3);">
+              {{rowData[col.field]}}
+          </td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-i="rowIndex"  let-rowData let-columns="columns">
+      <tr>
+          <td [attr.colspan]="columns.length + 1">
+              <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
+                  <div class="ui-g-12 ui-md-3" style="text-align:center">
+                  </div>
+                  <div class="ui-g-12 ui-md-9">
+                      <div class="ui-g">
+                          <div class="ui-g-12">
+                              <input type="text" value="{{rowData.vin}}">
+                          </div>
+                          <div class="ui-g-12">
+                              <input type="text" value="{{rowData.color}}">
+                          </div>
+                          <div class="ui-g-12">
+                              <input type="text" value="{{rowData.brand}}">
+                          </div>
+                          <div class="ui-g-12">
+                              <input type="text" value="{{rowData.color}}">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </td>
+      </tr>
+  </ng-template>
+</p-table>
+<br/>
+<br/>
+<br/>
+
+<div>
+<p-table [columns]="cols" [value]="cars" selectionMode="single"  [responsive]="true" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15" [style]="{'max-width':'100%','overflow-x':'scroll'}">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th style="width: 10.25em; background:#00CCCB;color:#FBFEFF;height: 60px;" *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
+        <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+            <td *ngFor="let col of columns"  align="center" style="background:#FFFFFF; color: rgb(80, 80, 78);height: 60px; font-weight:bold;filter: brightness(1.3);">
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
+
+    <div style="">
+    <ng-template pTemplate="summary" let-rowData>
+        <div style="text-align:left">
+            <button type="button" pButton icon="fa-plus" (click)="showDialogToAdd()" label="Adicionar Linha"></button>
+        </div>
+    </ng-template>
+</div>
+    
+</p-table>
+</div>
+
+<div>
+<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+    <div class="ui-g ui-fluid" *ngIf="car">
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="vin">Vin</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="vin" [(ngModel)]="car.vin" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="year">Year</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="year" [(ngModel)]="car.year" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="brand">Brand</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="brand" [(ngModel)]="car.brand" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="color">Color</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="color" [(ngModel)]="car.color" />
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+</div>

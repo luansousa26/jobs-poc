@@ -1,0 +1,30 @@
+
+<div class="ui-md-12 spacer-top">
+  <form id="parametros_form">
+    <div class="ui-g-12 ui-md-12" align="center">
+        <div class="form-group">
+            <span class="ui-float-label">
+              <input class="form-control"  id="parametros_titulo" placeholder="Título" type="text">
+              <label for="float-input-detalhes" jhiTranslate="qSaudeEstipulanteWebApp.parametros.titulo" for="parametros_titulo"></label>
+            </span>
+          </div>
+    </div>
+    <div class="ui-g-12 ui-md-12" align="center">
+      <div class="form-group">
+          <span class="ui-float-label">
+            <input class="form-control"  id="parametros_conceito" placeholder="Conceito" type="text">
+            <label for="float-input-detalhes" jhiTranslate="qSaudeEstipulanteWebApp.parametros.conceito" for="parametros_titulo"></label>
+          </span>
+        </div>
+  </div>
+  <div class="ui-g-12 ui-md-12">
+    <div class="form-group">
+        <div class="ui-fluid">
+            <jhi-p-autocomplete [objetosJson]="tiposCronograma" id="parametros_tipos" [idBanco]="idTipoCronograma"
+                [InternacionalizacaoLabel]="'atributos.vigencia.motivoTermino'" (idSelecionadoUsuario)="parametros_tipoCronograma($event)">
+            </jhi-p-autocomplete>
+        </div>
+      </div>
+   </div>
+   </form>
+</div>  

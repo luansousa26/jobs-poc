@@ -1,0 +1,13 @@
+<span class="ui-float-label">
+    <p-autoComplete [(ngModel)]="texto" [forceSelection]="true" [emptyMessage]="emptyMessage" [dropdown]="true" name="autoComplete" [suggestions]="results"
+        (completeMethod)="filtrarResultados($event)" id="autoComplete" (onSelect)="passarId($event)"
+        [minLength]="1" >
+        <ng-template let-autoComplete pTemplate="item">
+            <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
+                <div *ngIf="!indicadorEconomico" style="font-size:14px;float:left;margin:10px 10px 0 0">{{autoComplete.descricaoItem}}</div>
+                <div *ngIf="indicadorEconomico" style="font-size:14px;float:left;margin:10px 10px 0 0">{{autoComplete.nomeIndicadorEconomico}}</div>
+            </div>
+        </ng-template>
+    </p-autoComplete>
+    <label for="autoComplete" ></label>
+</span>

@@ -10,10 +10,19 @@ import {DialogModule} from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule} from 'primeng/button';
+import { ConogramTableComponent } from './primeng/conogram-table/conogram-table.component';
+import { ParametrosComponent } from './screens/parametros/parametros.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { PAutoCompleteComponent } from './p-autocomplete/p-autocomplete.component';
+;
 @NgModule({
   declarations: [
     AppComponent,
-    TableToogleComponent
+    TableToogleComponent,
+    ConogramTableComponent,
+    ParametrosComponent,
+    PAutoCompleteComponent
     ],
   imports: [
     BrowserModule,
@@ -22,7 +31,9 @@ import {ButtonModule} from 'primeng/button';
     DialogModule,
     FormsModule,
     BrowserAnimationsModule,
-    ButtonModule
+    ButtonModule,
+    AppRoutingModule,
+    AutoCompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

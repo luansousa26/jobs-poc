@@ -1,0 +1,33 @@
+// Tag a seguir é o seletor a ser utilizado no seu html
+<jhi-p-autocomplete [objetosJson]="seuObjetoJson" [idBanco]="suaModel.suaVariavelIdModel" [InternacionalizacaoLabel]="suaInternacionalizacao" (idSelecionadoUsuario)="seuMetodoParaReceberId($event)"></jhi-p-autocomplete>
+
+* seuObjetoJson é seu json que constam os objetos do tipo DominioItemModel
+
+exemplo de Mock ou como seu Json deve vir da tabela Dominio Item
+this.objetosDoSeuJson = [
+    {
+        id: 10,
+        nomeItem: 'Luan',
+        descricaoItem: 'Santana',
+    }, {
+        id: 20,
+        nomeItem: 'Stephano',
+        descricaoItem: 'giuseppe',
+    }, {
+        id: 30,
+        nomeItem: 'Serginho',
+        descricaoItem: 'Groisman',
+    }
+];
+
+* suaVariavelIdModel é a variavel da sua Model onde vem o id do Banco.
+* suaInternacionalizacao é a sua variavel que contem o caminho da internacionalização, por exemplo: suaInternacionalizacao = 'estipulante.atributos.titulo';
+
+* seuMetodoParaReceberId($event) seu metodo para receber o id do item selecionado e transferir para suaVariavelIdModel.
+
+Exemplo de Método a ser utilizado no seu Component.ts
+seuMetodoParaReceberId(event) {
+    this.suaModel.suaVariavelIdModel = event;
+}
+
+{{ATENÇÂO - ATRIBUA EM SEU ONINIT OS VALORES DE suaVariavelModel E objetosDoSeuJson}}
